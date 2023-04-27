@@ -21,29 +21,17 @@ export default function Home() {
   /* ---------------------------- extract function ---------------------------- */
   function extract(input) {
     // Extract the string of lyrics and chords from the input object
-    // debugger;
-    // const data = JSON.sringify(input);
-    // const data = JSON.parse(input);
     const songData = input;
-    console.log(songData);
+ 
     // Split the string into individual lines
     const lines = songData.split("\n");
-
-    // Iterate over each line and split it into lyrics and chords
-    // const song = lines.map((line) => {
-    //   const [lyrics, chords] = line.split(/(?<=\S)\s+/);
-    //   return { lyrics, chords };
-    // });
-
     const lyrics = lines.slice(0, 3);
     const chords = lines.slice(4, 7);
     setLyrics(lines.slice(0, 3));
     setChords(lines.slice(4, 7));
-    // console.log({ lines });
-    // console.log({ lyrics });
-    // console.log({ chords });
+
   }
-  console.log({ lyrics });
+
   /* ----------------------------- submit function ---------------------------- */
   //submit post and setResult
   async function onSubmit(event) {

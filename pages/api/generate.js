@@ -70,9 +70,6 @@ function generatePrompt(subject) {
   with the first line has 5 syllables, the second line has 7 syllables, the third line has 5 syllables.
 next, write three lines of guitar chords to accompany the haiku.
 
-
-  
-
 `;
 }
 function generatePrompt1(subject) {
