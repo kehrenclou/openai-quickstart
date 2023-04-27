@@ -10,8 +10,8 @@ export default function Home() {
   /* -------------------------------- useStates ------------------------------- */
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState("");
-  const [lyrics, setLyrics] = useState("");
-  const [song, setSong] = useState("");
+  const [lyrics, setLyrics] = useState([]);
+  const [chords, setChords] = useState([]);
 
   const [subjectInput, setSubjectInput] = useState("");
   const testResponse = {
@@ -35,8 +35,15 @@ export default function Home() {
     //   return { lyrics, chords };
     // });
 
-    console.log(lines);
+    const lyrics = lines.slice(0, 3);
+    const chords = lines.slice(4, 7);
+    setLyrics(lines.slice(0, 3));
+    setChords(lines.slice(4, 7));
+    // console.log({ lines });
+    // console.log({ lyrics });
+    // console.log({ chords });
   }
+  console.log({ lyrics });
   /* ----------------------------- submit function ---------------------------- */
   //submit post and setResult
   async function onSubmit(event) {
@@ -89,6 +96,12 @@ export default function Home() {
           <input type="submit" value="Generate haiku" />
         </form>
         <div className={styles.result}>{result}</div>
+        <p>{lyrics[0]}</p>
+        <h3>{chords[0]}</h3>
+        <p>{lyrics[1]}</p>
+        <h3>{chords[1]}</h3>
+        <p>{lyrics[2]}</p>
+        <h3>{chords[2]}</h3>
       </main>
     </div>
   );

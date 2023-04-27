@@ -66,7 +66,7 @@ function generatePrompt(subject) {
   const capitalizedSubject =
     subject[0].toUpperCase() + subject.slice(1).toLowerCase();
 
-  return ` write a "haiku" about \ "${capitalizedSubject}".
+  return ` write a "haiku" about  "${capitalizedSubject}".
   with the first line has 5 syllables, the second line has 7 syllables, the third line has 5 syllables.
 next, write three lines of guitar chords to accompany the haiku.
 
