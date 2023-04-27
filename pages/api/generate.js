@@ -1,11 +1,15 @@
+/* --------------------------------- import --------------------------------- */
 import { Configuration, OpenAIApi } from "openai";
 
+/* -------------------------- set up openai config -------------------------- */
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
+/* --------------------------- function to connect -------------------------- */
 export default async function (req, res) {
+  //if no configureation error
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
@@ -16,7 +20,10 @@ export default async function (req, res) {
     return;
   }
 
+  //define subject from req.body
   const subject = req.body.subject || "";
+
+  //- check subject is not 0, then return and try to connect
   if (subject.trim().length === 0) {
     res.status(400).json({
       error: {
@@ -54,11 +61,17 @@ export default async function (req, res) {
   }
 }
 
+//generates prompt with subject
 function generatePrompt(subject) {
   const capitalizedSubject =
     subject[0].toUpperCase() + subject.slice(1).toLowerCase();
 
-  return `use "5-7-5" syllable structure write a "haiku" about \ "${capitalizedSubject}" and add abbreviated guitar chords after each line
+  return ` write a "haiku" about \ "${capitalizedSubject}".
+  with the first line has 5 syllables, the second line has 7 syllables, the third line has 5 syllables.
+next, write three lines of guitar chords to accompany the haiku.
+
+
+  
 
 `;
 }
@@ -66,7 +79,7 @@ function generatePrompt1(subject) {
   const capitalizedSubject =
     subject[0].toUpperCase() + subject.slice(1).toLowerCase();
 
-  return `use "5-7-5" syllable structure write a "haiku" about "${capitalizedSubject} and add abbreviated guitar chords after each line"
+  return `use "5-7-5" syllable structure write a "haiku" about "${capitalizedSubject} and Next,write three lines of guitar chords to accompany the haiku."
 
 `;
 }
