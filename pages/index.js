@@ -12,6 +12,7 @@ export default function Home() {
   const [result, setResult] = useState("");
   const [lyrics, setLyrics] = useState([]);
   const [chords, setChords] = useState([]);
+  const [isValid, setIsValid] = useState(false);
 
   const [subjectInput, setSubjectInput] = useState("");
   const testResponse = {
@@ -22,14 +23,13 @@ export default function Home() {
   function extract(input) {
     // Extract the string of lyrics and chords from the input object
     const songData = input;
- 
+
     // Split the string into individual lines
     const lines = songData.split("\n");
     const lyrics = lines.slice(0, 3);
     const chords = lines.slice(4, 7);
     setLyrics(lines.slice(0, 3));
     setChords(lines.slice(4, 7));
-
   }
 
   /* ----------------------------- submit function ---------------------------- */
