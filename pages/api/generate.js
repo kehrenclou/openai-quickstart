@@ -20,10 +20,10 @@ export default async function (req, res) {
     return;
   }
 
-  //define subject from req.body
+  /* --------------------- //define subject from req.body --------------------- */
   const subject = req.body.subject || "";
 
-  //- check subject is not 0, then return and try to connect
+  /* ------- //- check subject is not 0, then return and try to connect ------- */
   if (subject.trim().length === 0) {
     res.status(400).json({
       error: {
@@ -61,7 +61,7 @@ export default async function (req, res) {
   }
 }
 
-//generates prompt with subject
+/* --------------------- //generates prompt with subject -------------------- */
 function generatePrompt(subject) {
   const capitalizedSubject =
     subject[0].toUpperCase() + subject.slice(1).toLowerCase();
@@ -72,11 +72,4 @@ next, write three lines of guitar chords to accompany the haiku.
 
 `;
 }
-function generatePrompt1(subject) {
-  const capitalizedSubject =
-    subject[0].toUpperCase() + subject.slice(1).toLowerCase();
 
-  return `use "5-7-5" syllable structure write a "haiku" about "${capitalizedSubject} and Next,write three lines of guitar chords to accompany the haiku."
-
-`;
-}

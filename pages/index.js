@@ -2,17 +2,19 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
+import collected from "./api/collectedData";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Home                                    */
 /* -------------------------------------------------------------------------- */
 export default function Home() {
   /* -------------------------------- useStates ------------------------------- */
-  const [animalInput, setAnimalInput] = useState("");
+  // const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState("");
   const [lyrics, setLyrics] = useState([]);
   const [chords, setChords] = useState([]);
   const [isValid, setIsValid] = useState(false);
+  const [data, setData] = useState("");
 
   const [subjectInput, setSubjectInput] = useState("");
   const testResponse = {
@@ -30,8 +32,10 @@ export default function Home() {
     const chords = lines.slice(4, 7);
     setLyrics(lines.slice(0, 3));
     setChords(lines.slice(4, 7));
+   
   }
-
+  console.log("result", result);
+  console.log("data", data);
   /* ----------------------------- submit function ---------------------------- */
   //submit post and setResult
   async function onSubmit(event) {
@@ -52,7 +56,7 @@ export default function Home() {
           new Error(`Request failed with status ${response.status}`)
         );
       }
-
+      setData(data);
       setResult(data.result);
       extract(data.result);
       setSubjectInput("");
